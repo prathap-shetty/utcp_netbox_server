@@ -1,0 +1,25 @@
+{
+  "variables": {
+    "NETBOX_TOKEN": "xxxx",
+    "netbox_NETBOX_TOKEN": "xxxxx"
+  },
+  "load_variables_from": [
+    { "variable_loader_type": "dotenv", "env_file_path": ".env" }
+  ],
+  "tool_repository": { "tool_repository_type": "in_memory" },
+  "tool_search_strategy": { "tool_search_strategy_type": "tag_and_description_word_match" },
+  "manual_call_templates": [
+    {
+      "name": "netbox",
+      "call_template_type": "file",
+      "file_path": "./dcim_device.json",
+      "allowed_communication_protocols": ["http"],
+      "auth_tools": {
+        "auth_type": "api_key",
+        "api_key": "Token ${NETBOX_TOKEN}",
+        "var_name": "Authorization",
+        "location": "header"
+      }
+    }
+  ]
+}
